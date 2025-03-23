@@ -53,26 +53,7 @@ const theme = {
 };
 
 // カスタムスライドテンプレート
-const template = () => (
-  <Box
-    justifyContent="space-between"
-    position="absolute"
-    bottom={0}
-    width={1}
-    className="canva-slide-footer"
-  >
-    <Box padding="0 1.5em">
-      <Text fontSize="0.6em" color={theme.colors.secondary} fontWeight={500}>
-        Cursorを使った開発事例紹介
-      </Text>
-    </Box>
-    <Box padding="1.5em">
-      <Text fontSize="0.6em" color={theme.colors.secondary} fontWeight={500}>
-        スライド {"{slideNumber}"} / {"{slideCount}"}
-      </Text>
-    </Box>
-  </Box>
-);
+const template = () => null;
 
 // カスタム見出しコンポーネント
 const CanvaHeading = ({ children, size = "h2", color = "primary", className = "", ...props }) => (
@@ -90,8 +71,8 @@ const CanvaHeading = ({ children, size = "h2", color = "primary", className = ""
 );
 
 // カスタムボックスコンポーネント
-const CanvaCard = ({ children, className = "" }) => (
-  <Box className={`canva-card ${className}`} padding="32px" height="100%">
+const CanvaCard = ({ children, className = "", height = "100%" }) => (
+  <Box className={`canva-card ${className}`} padding="32px" height={height}>
     {children}
   </Box>
 );
@@ -115,11 +96,7 @@ const CanvaList = ({ children }) => (
 );
 
 // 数字アイコンコンポーネント
-const NumberIcon = ({ number }) => (
-  <Box className="number-icon">
-    {number}
-  </Box>
-);
+const NumberIcon = ({ number }) => null;
 
 const Presentation = () => (
   <Deck theme={theme} template={template}>
@@ -198,7 +175,7 @@ const Presentation = () => (
     <Slide className="canva-slide">
       <CanvaHeading size="h2">はじめに</CanvaHeading>
       <div className="slide-content">
-        <CanvaCard>
+        <CanvaCard height="80%">
           <CanvaText margin="0 0 24px">
             今日は「Cursorを使った実際の開発プロセス」について、具体的な対話事例をもとに紹介します。
           </CanvaText>
@@ -218,7 +195,7 @@ const Presentation = () => (
       <CanvaHeading>Cursorとは？</CanvaHeading>
       <div className="slide-content">
         <Grid gridTemplateColumns="1fr" gridGap={3} className="canva-grid">
-          <CanvaCard>
+          <CanvaCard height="55vh">
             <CanvaList>
               <Appear>
                 <ListItem style={{ fontWeight: 500 }}>AIを活用したコーディング支援エディタ</ListItem>
@@ -246,7 +223,7 @@ const Presentation = () => (
       className="canva-slide" 
       backgroundImage="linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)), url(https://source.unsplash.com/random/1600x900/?coding)"
     >
-      <CanvaHeading>開発事例：コンタクトBANリスト管理機能</CanvaHeading>
+      <CanvaHeading>開発事例：お問い合わせBANリスト管理機能</CanvaHeading>
       <div className="slide-content">
         <Grid gridTemplateColumns="1fr 1fr" gridGap={5} className="canva-grid">
           <CanvaCard>
@@ -272,7 +249,7 @@ const Presentation = () => (
               機能
             </Heading>
             <CanvaList>
-              <ListItem>メールアドレスをBANリストに追加・削除</ListItem>
+              <ListItem>メールアドレスをBANリストに追加/削除</ListItem>
               <ListItem>BANリストの閲覧と管理</ListItem>
               <ListItem>問い合わせをステルスブロック</ListItem>
             </CanvaList>
@@ -296,8 +273,8 @@ const Presentation = () => (
       />
       <CanvaHeading>ポイント①：既存コードの調査</CanvaHeading>
       <div className="slide-content">
-        <Grid gridTemplateColumns="1fr 1fr" gridGap={4} className="canva-grid">
-          <CanvaCard>
+        <Grid gridTemplateColumns="1fr" gridGap={4} className="canva-grid">
+          <CanvaCard height="55vh">
             <CanvaList>
               <ListItem>
                 Cursorは、既存のファイル構造やコードスタイルを検索・理解できる
@@ -308,9 +285,6 @@ const Presentation = () => (
               <ListItem>具体的なファイル名や機能を指定すると効果的</ListItem>
             </CanvaList>
           </CanvaCard>
-          <Box display="flex" alignItems="center" justifyContent="center" padding="20px">
-            <NumberIcon number="1" />
-          </Box>
         </Grid>
       </div>
       <Notes>
@@ -323,10 +297,11 @@ const Presentation = () => (
     <Slide className="canva-slide">
       <CanvaHeading size="h2">AIとの対話例：要件を伝える</CanvaHeading>
       <div className="slide-content">
-        <DialogBlock
-          userMessage="@contact_ban.rb を使ってemailをcontact_banテーブルに追加してbanしたり、banしたemail情報を閲覧できるようなページと機能を作成してください。"
-          aiMessage="まず、`contact_ban`モデルとテーブルの構造を確認し、必要な機能を実装していきます。"
-          codeBlock={`class ContactBan < ApplicationRecord
+        <Box width="100%" maxWidth="100%" overflow="hidden">
+          <DialogBlock
+            userMessage="@contact_ban.rb を使ってemailをcontact_banテーブルに追加してbanしたり、banしたemail情報を閲覧できるようなページと機能を作成してください。"
+            aiMessage="まず、`contact_ban`モデルとテーブルの構造を確認し、必要な機能を実装していきます。"
+            codeBlock={`class ContactBan < ApplicationRecord
   validates :email, presence: true
 end
 
@@ -337,8 +312,9 @@ create_table "contact_bans", charset: "utf8mb4" do |t|
   t.datetime "updated_at", precision: 6, null: false
   t.index ["email"], name: "index_contact_bans_on_email", unique: true
 end`}
-          codeTitle="モデルとテーブル構造の確認"
-        />
+            codeTitle="モデルとテーブル構造の確認"
+          />
+        </Box>
       </div>
       <Notes>
         AIとの対話の最初の例です。まず要件を伝え、AIがどのように応答するかを示します。
@@ -350,7 +326,7 @@ end`}
     <Slide className="canva-slide" backgroundColor="quaternary">
       <CanvaHeading size="h2">ポイント②：簡潔な指示でも理解してくれる</CanvaHeading>
       <div className="slide-content">
-        <CanvaCard>
+        <CanvaCard height="55vh">
           <CanvaList>
             <ListItem>
               一度コンテキストを理解すると、短い指示でも適切に対応してくれる
@@ -368,34 +344,11 @@ end`}
       </Notes>
     </Slide>
 
-    {/* 対話例3: エラーの解決 */}
-    <Slide className="canva-slide">
-      <CanvaHeading size="h2">AIとの対話例：エラーの解決</CanvaHeading>
-      <div className="slide-content">
-        <DialogBlock
-          userMessage={`destroyリクエストがエラーになる。
-Request URL: http://damrey.com:3000/authority_admin/contact_bans/2
-Request Method: GET
-Status Code: 404 Not Found`}
-          aiMessage="問題は削除リンクのHTTPメソッドが正しく適用されていないことです。DELETEメソッドではなくGETメソッドでリクエストが送信されています。"
-          codeBlock={`td
-  = form_with url: authority_admin_contact_ban_path(ban), method: :delete, local: true do |f|
-    = submit_tag '削除', class: 'label label-danger', 
-      data: { confirm: "#{ban.email}をBANリストから削除してもよろしいですか？" }`}
-          codeTitle="修正案"
-        />
-      </div>
-      <Notes>
-        エラーが発生した際の対応例です。エラーメッセージを共有するだけで、Cursorは問題を特定し
-        適切な修正案を提案しています。
-      </Notes>
-    </Slide>
-
     {/* ポイント3 */}
     <Slide className="canva-slide" backgroundColor="quaternary">
       <CanvaHeading size="h2">ポイント③：エラーメッセージを共有する</CanvaHeading>
       <div className="slide-content">
-        <CanvaCard>
+        <CanvaCard width="55vh">
           <CanvaList>
             <ListItem>
               エラーの内容をそのまま共有すると、原因と解決策を提案してくれる
@@ -411,29 +364,28 @@ Status Code: 404 Not Found`}
       </Notes>
     </Slide>
 
-    {/* 対話例4: UI改善の提案 */}
+    {/* 対話例3: エラーの解決 */}
     <Slide className="canva-slide">
-      <CanvaHeading size="h2">AIとの対話例：UI改善の提案</CanvaHeading>
+      <CanvaHeading size="h2">AIとの対話例：エラーの解決</CanvaHeading>
       <div className="slide-content">
-        <DialogBlock
-          userMessage="@index.html.slim のUIは、 @index.html.slim と同じにして。参考に"
-          aiMessage="`contact_bans/index.html.slim`のUIを`archives/index.html.slim`と同じスタイルに変更します。"
-          codeBlock={`.box
-  .box-body
-    .row.row--stack
-      = form_with model: @contact_ban, url: authority_admin_contact_bans_path, local: true do |f|
-        .col-xs-6
-          .input-group
-            .input-group-addon メールアドレス
-            = f.email_field :email, class: 'form-control input-sm', required: true, placeholder: 'example@example.com'
-        .col-xs-2
-          = f.submit "BANリストに追加", class: "btn btn-primary btn-sm"`}
-          codeTitle="修正後のUI"
-        />
+        <Box width="100%" maxWidth="100%" overflow="hidden">
+          <DialogBlock
+            userMessage={`destroyリクエストがエラーになる。
+Request URL: http://damrey.com:3000/authority_admin/contact_bans/2
+Request Method: GET
+Status Code: 404 Not Found`}
+            aiMessage="問題は削除リンクのHTTPメソッドが正しく適用されていないことです。DELETEメソッドではなくGETメソッドでリクエストが送信されています。"
+            codeBlock={`td
+  = form_with url: authority_admin_contact_ban_path(ban), method: :delete, local: true do |f|
+    = submit_tag '削除', class: 'label label-danger', 
+      data: { confirm: "#{ban.email}をBANリストから削除してもよろしいですか？" }`}
+            codeTitle="修正案"
+          />
+        </Box>
       </div>
       <Notes>
-        既存UIを参考にした実装例です。単に「同じにして」だけでも、意図を理解して
-        UIの統一感を保った実装を提案しています。
+        エラーが発生した際の対応例です。エラーメッセージを共有するだけで、Cursorは問題を特定し
+        適切な修正案を提案しています。
       </Notes>
     </Slide>
 
@@ -459,42 +411,31 @@ Status Code: 404 Not Found`}
       </Notes>
     </Slide>
 
-    {/* 対話例5: 細かな修正 */}
+    {/* 対話例4: UI改善の提案 */}
     <Slide className="canva-slide">
-      <CanvaHeading size="h2">AIとの対話例：細かな修正 (1)</CanvaHeading>
+      <CanvaHeading size="h2">AIとの対話例：UI改善の提案</CanvaHeading>
       <div className="slide-content">
-        <DialogBlock
-          userMessage="日本時間にして"
-          aiMessage="日本時間で表示するように修正します。"
-          codeBlock={`td = ban.id
-td = ban.email
-td = l ban.created_at.in_time_zone('Tokyo'), format: :long
-td
-  = form_with url: authority_admin_contact_ban_path(ban), method: :delete, local: true, class: 'display-inline' do`}
-        />
+        <Box width="100%" maxWidth="100%" overflow="hidden">
+          <DialogBlock
+            userMessage="@index.html.slim のUIは、 @index.html.slim と同じにして。参考に"
+            aiMessage="`contact_bans/index.html.slim`のUIを`archives/index.html.slim`と同じスタイルに変更します。"
+            codeBlock={`.box
+  .box-body
+    .row.row--stack
+      = form_with model: @contact_ban, url: authority_admin_contact_bans_path, local: true do |f|
+        .col-xs-6
+          .input-group
+            .input-group-addon メールアドレス
+            = f.email_field :email, class: 'form-control input-sm', required: true, placeholder: 'example@example.com'
+        .col-xs-2
+          = f.submit "BANリストに追加", class: "btn btn-primary btn-sm"`}
+            codeTitle="修正後のUI"
+          />
+        </Box>
       </div>
       <Notes>
-        日本時間表示に関する対話例です。簡潔な指示に対してAIが適切なコードを提案しています。
-      </Notes>
-    </Slide>
-
-    {/* 対話例5の続き */}
-    <Slide className="canva-slide">
-      <CanvaHeading size="h2">AIとの対話例：細かな修正 (2)</CanvaHeading>
-      <div className="slide-content">
-        <DialogBlock
-          userMessage="既存のrailsメソッド使えばもっと簡単に出来ない？"
-          aiMessage="その通りです。アプリケーションのタイムゾーンは既に'Tokyo'に設定されているため、単にl ban.created_at, format: :longとするだけで日本時間で表示されます。"
-          codeBlock={`td = ban.id
-td = ban.email
-td = l ban.created_at, format: :long
-td
-  = form_with url: authority_admin_contact_ban_path(ban), method: :delete, local: true, class: 'display-inline' do`}
-        />
-      </div>
-      <Notes>
-        対話を通じた改善の例です。最初の提案に対してさらに質問することで、
-        より効率的なコードに改善されています。
+        既存UIを参考にした実装例です。単に「同じにして」だけでも、意図を理解して
+        UIの統一感を保った実装を提案しています。
       </Notes>
     </Slide>
 
@@ -502,7 +443,7 @@ td
     <Slide className="canva-slide" backgroundColor="quaternary">
       <CanvaHeading size="h2">ポイント⑤：対話を通じた改善</CanvaHeading>
       <div className="slide-content">
-        <CanvaCard>
+        <CanvaCard height="55vh">
           <CanvaList>
             <ListItem>
               出力されたコードに対して質問や改善案を出すと対応してくれる
@@ -518,21 +459,46 @@ td
       </Notes>
     </Slide>
 
-    {/* 対話例6: フォーマットの調整 */}
+    {/* 対話例5: 細かな修正 */}
     <Slide className="canva-slide">
-      <CanvaHeading size="h2">AIとの対話例：フォーマットの調整</CanvaHeading>
+      <CanvaHeading size="h2">AIとの対話例：細かな修正 (1)</CanvaHeading>
       <div className="slide-content">
-        <DialogBlock
-          userMessage={`+9000は不要
-\`\`\`
-2025年03月15日(土) 02時41分50秒 +0900
-\`\`\``}
-          aiMessage="タイムゾーン表示を削除するために、strftimeを使用します："
-          codeBlock={`td = ban.created_at.strftime('%Y年%m月%d日(%a) %H時%M分%S秒')`}
-        />
+        <Box width="100%" maxWidth="100%" overflow="hidden">
+          <DialogBlock
+            userMessage="日本時間にして"
+            aiMessage="日本時間で表示するように修正します。"
+            codeBlock={`td = ban.id
+td = ban.email
+td = l ban.created_at.in_time_zone('Tokyo'), format: :long
+td
+  = form_with url: authority_admin_contact_ban_path(ban), method: :delete, local: true, class: 'display-inline' do`}
+          />
+        </Box>
       </div>
       <Notes>
-        具体例を示すことで意図を明確に伝える例です。AIは補足情報から何が必要かを正確に理解しています。
+        日本時間表示に関する対話例です。簡潔な指示に対してAIが適切なコードを提案しています。
+      </Notes>
+    </Slide>
+
+    {/* 対話例5の続き */}
+    <Slide className="canva-slide">
+      <CanvaHeading size="h2">AIとの対話例：細かな修正 (2)</CanvaHeading>
+      <div className="slide-content">
+        <Box width="100%" maxWidth="100%" overflow="hidden">
+          <DialogBlock
+            userMessage="既存のrailsメソッド使えばもっと簡単に出来ない？"
+            aiMessage="その通りです。アプリケーションのタイムゾーンは既に'Tokyo'に設定されているため、単にl ban.created_at, format: :longとするだけで日本時間で表示されます。"
+            codeBlock={`td = ban.id
+td = ban.email
+td = l ban.created_at, format: :long
+td
+  = form_with url: authority_admin_contact_ban_path(ban), method: :delete, local: true, class: 'display-inline' do`}
+          />
+        </Box>
+      </div>
+      <Notes>
+        対話を通じた改善の例です。最初の提案に対してさらに質問することで、
+        より効率的なコードに改善されています。
       </Notes>
     </Slide>
 
@@ -540,7 +506,45 @@ td
     <Slide className="canva-slide" backgroundColor="quaternary">
       <CanvaHeading size="h2">ポイント⑥：情報の補完</CanvaHeading>
       <div className="slide-content">
-        <CanvaCard>
+        <CanvaCard height="55vh">
+          <CanvaList>
+            <ListItem>意図を表す例を示すと理解しやすくなる</ListItem>
+            <ListItem>部分的な情報でも全体を推測して対応してくれる</ListItem>
+            <ListItem>具体例を示すとより正確な実装につながる</ListItem>
+          </CanvaList>
+        </CanvaCard>
+      </div>
+      <Notes>
+        情報を補完する重要性について説明します。具体例を示すことで意図が明確になり、
+        より正確な実装につながります。
+      </Notes>
+    </Slide>
+
+    {/* 対話例6: フォーマットの調整 */}
+    <Slide className="canva-slide">
+      <CanvaHeading size="h2">AIとの対話例：フォーマットの調整</CanvaHeading>
+      <div className="slide-content">
+        <Box width="100%" maxWidth="100%" overflow="hidden">
+          <DialogBlock
+            userMessage={`+9000は不要
+\`\`\`
+2025年03月15日(土) 02時41分50秒 +0900
+\`\`\``}
+            aiMessage="タイムゾーン表示を削除するために、strftimeを使用します："
+            codeBlock={`td = ban.created_at.strftime('%Y年%m月%d日(%a) %H時%M分%S秒')`}
+          />
+        </Box>
+      </div>
+      <Notes>
+        具体例を示すことで意図を明確に伝える例です。AIは補足情報から何が必要かを正確に理解しています。
+      </Notes>
+    </Slide>
+
+    {/* ポイント7 */}
+    <Slide className="canva-slide" backgroundColor="quaternary">
+      <CanvaHeading size="h2">ポイント⑦：情報の補完</CanvaHeading>
+      <div className="slide-content">
+        <CanvaCard height="55vh">
           <CanvaList>
             <ListItem>意図を表す例を示すと理解しやすくなる</ListItem>
             <ListItem>部分的な情報でも全体を推測して対応してくれる</ListItem>
@@ -585,7 +589,7 @@ td
     <Slide className="canva-slide">
       <CanvaHeading>まとめ</CanvaHeading>
       <div className="slide-content">
-        <CanvaCard>
+        <CanvaCard height="55vh">
           <CanvaList>
             <ListItem>Cursorは対話を通じてコードを進化させていくツール</ListItem>
             <ListItem>短い指示でも意図を汲み取ってくれる</ListItem>
@@ -607,14 +611,14 @@ td
     >
       <div className="slide-content">
         <Box 
-          padding="40px" 
+          padding="40px 40px 190px" 
           borderRadius="16px" 
           backgroundColor="rgba(255,255,255,0.15)" 
           backdropFilter="blur(10px)" 
           boxShadow="0 15px 35px rgba(0,0,0,0.2)"
         >
           <Heading color="tertiary" fontWeight={600}>最後に</Heading>
-          <Text color="tertiary" fontSize={theme.fontSizes.text} lineHeight={1.7} margin="24px 0 32px">
+          <Text color="tertiary" fontSize={theme.fontSizes.text} lineHeight={1.7} margin="130px 0 32px">
             Cursorとの対話を通じた開発は、単にコード生成を依頼するだけでなく、
             パートナーとして一緒に考えながら開発を進める新しいスタイルです。
           </Text>

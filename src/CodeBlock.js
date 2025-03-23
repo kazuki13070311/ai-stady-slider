@@ -5,13 +5,13 @@ const CodeContainer = styled.div`
   background-color: #1a1e27;
   background-image: linear-gradient(to bottom, #252a37, #16191f);
   border-radius: 12px;
-  padding: 22px;
-  margin: 16px 0 4px;
+  padding: 16px;
+  margin: 12px 0 4px;
   overflow: auto;
-  max-height: ${(props) => props.maxHeight || "400px"};
+  max-height: ${(props) => props.maxHeight || "240px"};
   font-family: "Source Code Pro", monospace;
-  font-size: ${(props) => props.fontSize || "0.95em"};
-  line-height: 1.65;
+  font-size: ${(props) => props.fontSize || "0.85em"};
+  line-height: 1.5;
   color: #e6e6e6;
   white-space: pre-wrap;
   position: relative;
@@ -19,10 +19,14 @@ const CodeContainer = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.08);
   animation: scaleIn 0.5s ease-out;
   animation-delay: 0.2s;
+  width: 100%;
+  max-width: 100%;
+  word-break: break-word;
+  overflow-wrap: break-word;
   
   &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
   }
   
   &::-webkit-scrollbar-track {
@@ -64,12 +68,12 @@ const CodeHeader = styled.div`
   display: ${(props) => (props.title ? "flex" : "none")};
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 14px;
-  margin-bottom: 14px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   font-weight: 600;
   color: #b19eee;
-  font-size: 1.05em;
+  font-size: 0.95em;
   letter-spacing: 0.03em;
   
   &:before {
@@ -83,6 +87,9 @@ const CodeContent = styled.div`
   position: relative;
   z-index: 1;
   letter-spacing: 0.01em;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 100%;
   
   .keyword { color: #ff79c6; font-weight: 500; }
   .string { color: #f1fa8c; }

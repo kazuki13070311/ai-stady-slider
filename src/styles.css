@@ -48,10 +48,11 @@ body {
   animation: fadeIn 0.5s ease-out;
   max-width: var(--content-max-width);
   margin: 0 auto;
-  padding: 30px 40px 50px;
+  padding: 30px 40px 60px;
   display: flex;
   flex-direction: column;
-  height: calc(100% - 80px);
+  height: 100%;
+  overflow: hidden;
 }
 
 /* スライドのコンテンツ部分 */
@@ -59,8 +60,38 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   margin-top: 10px;
+  overflow-y: auto;
+  max-height: calc(100vh - 200px);
+  padding-right: 10px;
+  overflow-x: hidden;
+}
+
+/* ダイアログ対応のためのスタイル */
+.slide-content .canva-grid {
+  width: 100%;
+}
+
+/* CodeBlock専用スタイルの追加 */
+pre {
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* DialogBlockのコンテナスタイル調整 */
+.slide-content [class*="DialogContainer"] {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* AIメッセージ内のコードブロック調整 */
+.slide-content [class*="AIMessage"] pre,
+.slide-content [class*="CodeContainer"] {
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 /* タイトルスライドのスタイル */
@@ -149,7 +180,7 @@ body {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.5em;
+  top: 20px;
   width: 12px;
   height: 12px;
   background-color: var(--secondary-color);
@@ -191,44 +222,35 @@ body {
 
 /* スライドフッター */
 .canva-slide-footer {
-  padding: 12px 24px;
-  font-size: 0.85rem;
-  opacity: 0.7;
+  display: none;
+}
+
+/* スクロールバーのカスタマイズ */
+.slide-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.slide-content::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 3px;
+}
+
+.slide-content::-webkit-scrollbar-thumb {
+  background: rgba(90, 45, 130, 0.2);
+  border-radius: 3px;
+}
+
+.slide-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(90, 45, 130, 0.3);
 }
 
 /* 数字アイコン */
 .number-icon {
-  width: 180px;
-  height: 180px;
-  background: var(--secondary-color);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--light-color);
-  font-size: 90px;
-  font-weight: bold;
-  box-shadow: 0 10px 30px rgba(123, 104, 238, 0.3);
-  position: relative;
-  z-index: 1;
+  display: none;
 }
 
 .number-icon::after {
-  content: '';
-  position: absolute;
-  top: -8px;
-  left: -8px;
-  right: -8px;
-  bottom: -8px;
-  border-radius: 50%;
-  border: 2px dashed rgba(255, 255, 255, 0.4);
-  z-index: -1;
-  animation: rotate 15s linear infinite;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  display: none;
 }
 
 /* セクション区切り線 */

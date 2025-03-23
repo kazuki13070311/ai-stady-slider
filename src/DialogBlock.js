@@ -8,16 +8,17 @@ const DialogContainer = styled.div`
   gap: 32px;
   margin-bottom: 40px;
   animation: fadeIn 0.6s ease-out;
-  max-width: 92%;
+  max-width: 100%;
   margin-left: auto;
   margin-right: auto;
+  overflow-x: hidden;
 `;
 
 const UserMessage = styled.div`
   background: linear-gradient(135deg, #4c64fb, #0d41e1);
   border-radius: 16px;
   padding: 20px 24px;
-  max-width: 88%;
+  max-width: 85%;
   align-self: flex-end;
   color: white;
   position: relative;
@@ -26,6 +27,8 @@ const UserMessage = styled.div`
   animation: scaleIn 0.4s ease-out;
   letter-spacing: 0.03em;
   line-height: 1.6;
+  font-size: 0.95em;
+  word-break: break-word;
 
   &::after {
     content: "";
@@ -47,7 +50,8 @@ const AIMessage = styled.div`
   background: white;
   border-radius: 16px;
   padding: 20px 24px;
-  max-width: 88%;
+  max-width: 85%;
+  width: 100%;
   align-self: flex-start;
   color: #292929;
   position: relative;
@@ -57,6 +61,9 @@ const AIMessage = styled.div`
   animation-delay: 0.1s;
   letter-spacing: 0.03em;
   line-height: 1.6;
+  font-size: 0.95em;
+  word-break: break-word;
+  overflow-x: hidden;
 
   &::after {
     content: "";
@@ -95,9 +102,18 @@ const DialogTitle = styled.div`
 `;
 
 const DialogContent = styled.div`
-  font-size: 1.05em;
+  font-size: 1em;
   line-height: 1.65;
   margin-bottom: ${(props) => props.hasCodeBlock ? "10px" : "0"};
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  word-break: break-word;
+`;
+
+const CodeWrapper = styled.div`
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
 `;
 
 const DialogBlock = ({ userMessage, aiMessage, codeBlock, codeTitle }) => {
@@ -111,9 +127,11 @@ const DialogBlock = ({ userMessage, aiMessage, codeBlock, codeTitle }) => {
         <DialogTitle>Cursorの回答:</DialogTitle>
         <DialogContent hasCodeBlock={!!codeBlock}>{aiMessage}</DialogContent>
         {codeBlock && (
-          <CodeBlock title={codeTitle} maxHeight="280px" fontSize="0.95em">
-            {codeBlock}
-          </CodeBlock>
+          <CodeWrapper>
+            <CodeBlock title={codeTitle} maxHeight="280px" fontSize="0.95em">
+              {codeBlock}
+            </CodeBlock>
+          </CodeWrapper>
         )}
       </AIMessage>
     </DialogContainer>
