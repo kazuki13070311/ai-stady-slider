@@ -453,7 +453,7 @@ Status Code: 404 Not Found`}
       <div className="slide-content">
         <Box width="100%" maxWidth="100%" overflow="hidden">
           <DialogBlock
-            userMessage="@index.html.slim のUIは、 @index.html.slim と同じにして。参考に"
+            userMessage="@index.html.slim のUIは、 @index.html.slim と同じにして。"
             aiMessage="`contact_bans/index.html.slim`のUIを`archives/index.html.slim`と同じスタイルに変更します。"
             codeBlock={`.box
   .box-body
@@ -564,7 +564,7 @@ td
           <DialogBlock
             userMessage={`+9000は不要
 \`\`\`
-2025年03月15日(土) 02時41分50秒 +0900
+2025年03月15日(土) 02時41分50秒
 \`\`\``}
             aiMessage="タイムゾーン表示を削除するために、strftimeを使用します："
             codeBlock={`td = ban.created_at.strftime('%Y年%m月%d日(%a) %H時%M分%S秒')`}
@@ -712,29 +712,34 @@ td
       </Notes>
     </Slide>
 
-    {/* Q&A - シンプルで洗練されたデザイン */}
-    <Slide className="canva-slide">
-      <CanvaHeading size="h1">Q&A</CanvaHeading>
+    {/* ご清聴ありがとうございました - グラデーション背景 */}
+    <Slide 
+      backgroundImage="linear-gradient(135deg, #7B68EE, #5a2d82)"
+      className="canva-slide"
+    >
       <div className="slide-content">
         <Box 
-          display="flex" 
-          flexDirection="column" 
-          justifyContent="center" 
+          height="100%"
+          flexDirection="column"
+          justifyContent="center"
           alignItems="center"
           textAlign="center"
+          padding="40px"
         >
-          <Text 
-            fontSize={theme.fontSizes.h3} 
-            margin="20px 0 0" 
-            color={theme.colors.secondary}
-            fontWeight={500}
+          <Heading 
+            color="tertiary" 
+            fontSize={theme.fontSizes.h1} 
+            margin="240px 0 60px" 
+            fontWeight={700}
+            letterSpacing="0.05em"
+            style={{ textShadow: "0 2px 10px rgba(0,0,0,0.2)" }}
           >
-            ご質問をお待ちしています！
-          </Text>
+            ご清聴ありがとうございました！
+          </Heading>
         </Box>
       </div>
       <Notes>
-        質疑応答の時間です。Cursorの具体的な使い方や、今回の事例に関する質問を受け付けます。
+        ご清聴ありがとうございました。質疑応答の時間です。Cursorの具体的な使い方や、今回の事例に関する質問を受け付けます。
       </Notes>
     </Slide>
   </Deck>
