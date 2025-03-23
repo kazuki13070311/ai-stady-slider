@@ -2,6 +2,9 @@
 
 このプロジェクトは、Cursorを使った開発事例紹介のためのReactプレゼンテーションです。Spectacleライブラリを使用して、対話型AIコーディングアシスタントとの開発プロセスを視覚的に説明します。
 
+- アプリURL: 
+https://ai-study-slider.vercel.app/?slideIndex=0&stepIndex=0
+
 ## 特徴
 
 - Spectacleを使った画期的なスライドショー
