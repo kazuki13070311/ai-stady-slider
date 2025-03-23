@@ -2,3 +2,239 @@
   font-family: sans-serif;
   text-align: center;
 }
+
+:root {
+  --primary-color: #5a2d82;
+  --secondary-color: #7B68EE;
+  --accent-color: #FF5757;
+  --light-color: #ffffff;
+  --dark-color: #292929;
+  --gradient-bg: linear-gradient(135deg, #7B68EE, #5a2d82);
+  --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+  --border-radius: 12px;
+  --content-max-width: 1200px;
+  --text-spacing: 0.03em;
+  --line-height: 1.6;
+}
+
+/* アニメーション定義 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.97); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateX(-20px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* グローバルスタイル */
+body {
+  background-color: #f8f8fb;
+  letter-spacing: var(--text-spacing);
+  line-height: var(--line-height);
+  color: var(--dark-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* スライドの共通スタイル */
+.canva-slide {
+  animation: fadeIn 0.5s ease-out;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 30px 40px 50px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 80px);
+}
+
+/* スライドのコンテンツ部分 */
+.slide-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* タイトルスライドのスタイル */
+.title-slide {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* ヘッダーのスタイル */
+.canva-heading {
+  background: linear-gradient(135deg, #8a70f0, #5a2d82);
+  color: var(--light-color);
+  padding: 32px 36px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.05em;
+  text-align: center;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90px;
+}
+
+.canva-heading::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 100%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.12);
+  transform: rotate(30deg);
+  z-index: 0;
+}
+
+.canva-heading-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* カードスタイル */
+.canva-card {
+  background: white;
+  border-radius: var(--border-radius);
+  padding: 32px 36px;
+  box-shadow: var(--box-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: scaleIn 0.5s ease-out;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.canva-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+}
+
+/* リストスタイル */
+.canva-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.canva-list li {
+  margin-bottom: 18px;
+  padding-left: 30px;
+  position: relative;
+  animation: slideIn 0.4s ease-out forwards;
+  opacity: 0;
+  animation-delay: calc(0.1s * var(--item-index, 0));
+  font-weight: 500;
+}
+
+.canva-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5em;
+  width: 12px;
+  height: 12px;
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  transform: translateY(-50%);
+}
+
+/* ボタンスタイル */
+.canva-button {
+  background: var(--gradient-bg);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 600;
+  box-shadow: var(--box-shadow);
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  letter-spacing: 0.05em;
+}
+
+.canva-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(90, 45, 130, 0.3);
+}
+
+/* グリッドレイアウト調整 */
+.canva-grid {
+  display: grid;
+  gap: 28px;
+}
+
+/* テキスト調整 */
+.canva-text {
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin-bottom: 1.5em;
+}
+
+/* スライドフッター */
+.canva-slide-footer {
+  padding: 12px 24px;
+  font-size: 0.85rem;
+  opacity: 0.7;
+}
+
+/* 数字アイコン */
+.number-icon {
+  width: 180px;
+  height: 180px;
+  background: var(--secondary-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--light-color);
+  font-size: 90px;
+  font-weight: bold;
+  box-shadow: 0 10px 30px rgba(123, 104, 238, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.number-icon::after {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  border-radius: 50%;
+  border: 2px dashed rgba(255, 255, 255, 0.4);
+  z-index: -1;
+  animation: rotate 15s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* セクション区切り線 */
+.section-divider {
+  height: 6px;
+  background-image: linear-gradient(to right, #8a70f0, #FF5757);
+  border-radius: 3px;
+  margin: 0 0 30px;
+}
