@@ -223,7 +223,7 @@ const Presentation = () => (
       className="canva-slide" 
       backgroundImage="linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)), url(https://source.unsplash.com/random/1600x900/?coding)"
     >
-      <CanvaHeading>開発事例：コンタクトBANリスト管理機能</CanvaHeading>
+      <CanvaHeading>開発事例：お問合わせBANリスト管理機能</CanvaHeading>
       <div className="slide-content">
         <Grid gridTemplateColumns="1fr 1fr" gridGap={5} className="canva-grid">
           <CanvaCard>
@@ -251,7 +251,7 @@ const Presentation = () => (
             <CanvaList>
               <ListItem>メールアドレスをBANリストに追加/削除</ListItem>
               <ListItem>BANリストの閲覧と管理</ListItem>
-              <ListItem>問い合わせをステルスブロック</ListItem>
+              <ListItem>問い合わせをミュート</ListItem>
             </CanvaList>
           </CanvaCard>
         </Grid>
@@ -271,7 +271,7 @@ const Presentation = () => (
               Slackのお問い合わせチャネルに、執拗な問い合わせやスパムが増加していました。
             </CanvaText>
             <CanvaText margin="0 0 30px">
-              対応負荷を下げつつ、トラブル対応の効率化を図るため、ステルスブロック機能が必要になりました。
+              対応負荷を下げつつ、トラブル対応の効率化を図るため、ミュート機能が必要になりました。
             </CanvaText>
             <Box width="100%" textAlign="center" marginTop="20px">
               <Image 
@@ -293,7 +293,7 @@ const Presentation = () => (
       </div>
       <Notes>
         機能開発の背景について説明します。Slackへの通知をミュートする必要性が高まっていた状況と、
-        ステルスブロックによる効率的な対応方法について言及します。
+        ミュートによる効率的な対応方法について言及します。
       </Notes>
     </Slide>
 
@@ -573,24 +573,6 @@ td
       </div>
       <Notes>
         具体例を示すことで意図を明確に伝える例です。AIは補足情報から何が必要かを正確に理解しています。
-      </Notes>
-    </Slide>
-
-    {/* ポイント7 */}
-    <Slide className="canva-slide" backgroundColor="quaternary">
-      <CanvaHeading size="h2">ポイント⑦：情報の補完</CanvaHeading>
-      <div className="slide-content">
-        <CanvaCard height="55vh">
-          <CanvaList>
-            <ListItem>意図を表す例を示すと理解しやすくなる</ListItem>
-            <ListItem>部分的な情報でも全体を推測して対応してくれる</ListItem>
-            <ListItem>具体例を示すとより正確な実装につながる</ListItem>
-          </CanvaList>
-        </CanvaCard>
-      </div>
-      <Notes>
-        情報を補完する重要性について説明します。具体例を示すことで意図が明確になり、
-        より正確な実装につながります。
       </Notes>
     </Slide>
 
