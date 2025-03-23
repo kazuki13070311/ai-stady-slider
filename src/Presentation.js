@@ -223,7 +223,7 @@ const Presentation = () => (
       className="canva-slide" 
       backgroundImage="linear-gradient(rgba(255,255,255,0.97), rgba(255,255,255,0.97)), url(https://source.unsplash.com/random/1600x900/?coding)"
     >
-      <CanvaHeading>開発事例：お問い合わせBANリスト管理機能</CanvaHeading>
+      <CanvaHeading>開発事例：コンタクトBANリスト管理機能</CanvaHeading>
       <div className="slide-content">
         <Grid gridTemplateColumns="1fr 1fr" gridGap={5} className="canva-grid">
           <CanvaCard>
@@ -258,6 +258,42 @@ const Presentation = () => (
       </div>
       <Notes>
         今回紹介する開発事例の概要を説明します。比較的シンプルながらも実用的な機能です。
+      </Notes>
+    </Slide>
+
+    {/* 背景説明スライド - なぜBANリスト機能が必要だったか */}
+    <Slide className="canva-slide">
+      <CanvaHeading>なぜBANリスト機能が必要だったか</CanvaHeading>
+      <div className="slide-content">
+        <Grid gridTemplateColumns="1fr" gridGap={4} className="canva-grid">
+          <CanvaCard>
+            <CanvaText margin="0 0 20px">
+              Slackのお問い合わせチャネルに、執拗な問い合わせやスパムが増加していました。
+            </CanvaText>
+            <CanvaText margin="0 0 30px">
+              対応負荷を下げつつ、トラブル対応の効率化を図るため、ステルスブロック機能が必要になりました。
+            </CanvaText>
+            <Box width="100%" textAlign="center" marginTop="20px">
+              <Image 
+                src="/images/image1.png" 
+                alt="Slackのお問い合わせチャンネル" 
+                width="80%" 
+                style={{ 
+                  borderRadius: '12px', 
+                  boxShadow: '0 8px 20px rgba(0,0,0,0.15)',
+                  margin: '0 auto'
+                }} 
+              />
+              <Text fontSize="0.9em" opacity={0.7} marginTop="10px" textAlign="center">
+                ▲ お問い合わせチャンネルでの通知例
+              </Text>
+            </Box>
+          </CanvaCard>
+        </Grid>
+      </div>
+      <Notes>
+        機能開発の背景について説明します。Slackへの通知をミュートする必要性が高まっていた状況と、
+        ステルスブロックによる効率的な対応方法について言及します。
       </Notes>
     </Slide>
 
@@ -555,6 +591,66 @@ td
       <Notes>
         情報を補完する重要性について説明します。具体例を示すことで意図が明確になり、
         より正確な実装につながります。
+      </Notes>
+    </Slide>
+
+    <Slide className="canva-slide ban-list-slide">
+      <CanvaHeading size="h2">開発成果：お問合せBANリスト管理画面</CanvaHeading>
+      <div className="slide-content">
+        <CanvaCard>
+          <Box 
+            width="100%" 
+            display="flex" 
+            flexDirection="column" 
+            alignItems="center" 
+            justifyContent="center"
+            position="relative"
+          >
+            <CanvaText 
+              margin="0 0 20px" 
+              textAlign="center"
+              style={{
+                maxWidth: "800px",
+                margin: "0 auto 20px"
+              }}
+            >
+              Cursorとの対話で実装した最終的なBANリスト管理画面
+            </CanvaText>
+            <Box 
+              width="100%" 
+              position="relative"
+              textAlign="center"
+              className="ban-list-image-container"
+            >
+              <Image 
+                src="/images/image.png" 
+                alt="BANリスト管理画面" 
+                width="85%" 
+                className="ban-list-image"
+                style={{ 
+                  borderRadius: '12px', 
+                  boxShadow: '0 10px 25px rgba(0,0,0,0.15)',
+                  marginBottom: '20px',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  display: 'block'
+                }} 
+              />
+              <Text 
+                fontSize="0.9em" 
+                opacity={0.7} 
+                textAlign="center"
+                margin="10px 0 0"
+              >
+                ▲ 簡単な操作でメールアドレスを登録・削除できる管理画面
+              </Text>
+            </Box>
+          </Box>
+        </CanvaCard>
+      </div>
+      <Notes>
+        実際に開発した画面を表示し、シンプルながらも機能的なUIが実現できたことを紹介します。
+        単純な機能でありながら実務上の大きな効果をもたらした例として紹介します。
       </Notes>
     </Slide>
 

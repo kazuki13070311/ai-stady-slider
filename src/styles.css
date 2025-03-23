@@ -159,6 +159,27 @@ pre {
   box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
 }
 
+/* BANリスト管理画面用のスタイル調整 */
+.ban-list-image-container {
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.ban-list-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.ban-list-slide .canva-text {
+  text-align: center;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* リストスタイル */
 .canva-list {
   margin: 0;
