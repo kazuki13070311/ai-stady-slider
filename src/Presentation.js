@@ -144,7 +144,7 @@ const Presentation = () => (
           letterSpacing="0.05em"
           style={{ textShadow: "0 2px 10px rgba(0,0,0,0.2)" }}
         >
-          Cursorを使った開発事例紹介
+          今日から使えるAIエージェント活用術
         </Heading>
         <Heading 
           fontSize={theme.fontSizes.h3} 
@@ -154,7 +154,7 @@ const Presentation = () => (
           opacity={0.9}
           letterSpacing="0.03em"
         >
-          〜AIとの対話でスムーズなコード実装〜
+          〜Cursorを使った開発事例紹介〜
         </Heading>
         <Box 
           position="absolute" 
@@ -177,10 +177,10 @@ const Presentation = () => (
       <div className="slide-content">
         <CanvaCard height="80%">
           <CanvaText margin="0 0 24px">
-            今日は「Cursorを使った実際の開発プロセス」について、具体的な対話事例をもとに紹介します。
+            今回は「Cursorを使った実際の開発プロセス」について、具体的な対話事例をもとに紹介します。
           </CanvaText>
           <CanvaText>
-            Cursorとどのようにコミュニケーションを取りながら開発を進めるか、そのコツをお伝えします。
+            Cursorとどのようにコミュニケーションを取りながら開発を進めているのか事例を共有することで、何か１つでもみなさんのAI活用のお役に立てれれば幸いです。
           </CanvaText>
         </CanvaCard>
       </div>
@@ -201,10 +201,10 @@ const Presentation = () => (
                 <ListItem style={{ fontWeight: 500 }}>AIを活用したコーディング支援エディタ</ListItem>
               </Appear>
               <Appear>
-                <ListItem style={{ fontWeight: 500 }}>Claude AIを搭載したバージョンがさらに強力</ListItem>
+                <ListItem style={{ fontWeight: 500 }}>Claude 3.7 Sonnetなどの優秀なモデルの登場で実用的な開発が可能になってきた</ListItem>
               </Appear>
               <Appear>
-                <ListItem style={{ fontWeight: 500 }}>対話形式で開発を進められる</ListItem>
+                <ListItem style={{ fontWeight: 500 }}>対話形式で開発を進められる（AIエージェントも利用可能）</ListItem>
               </Appear>
               <Appear>
                 <ListItem style={{ fontWeight: 500 }}>既存コードベースの理解と拡張が得意</ListItem>
@@ -236,7 +236,7 @@ const Presentation = () => (
               目的
             </Heading>
             <CanvaText>
-              問い合わせスパムを効率的にブロックする管理機能を開発
+              執拗な問い合わせをslackへ通知しないように効率的にミュートする管理機能を開発
             </CanvaText>
           </CanvaCard>
           <CanvaCard>
@@ -252,6 +252,7 @@ const Presentation = () => (
               <ListItem>メールアドレスをBANリストに追加/削除</ListItem>
               <ListItem>BANリストの閲覧と管理</ListItem>
               <ListItem>問い合わせをミュート</ListItem>
+              <ListItem>問い合わせ内容はDBに保存される</ListItem>
             </CanvaList>
           </CanvaCard>
         </Grid>
@@ -263,15 +264,15 @@ const Presentation = () => (
 
     {/* 背景説明スライド - なぜBANリスト機能が必要だったか */}
     <Slide className="canva-slide">
-      <CanvaHeading>なぜBANリスト機能が必要だったか</CanvaHeading>
+      <CanvaHeading>なぜこの機能が必要だったのか？</CanvaHeading>
       <div className="slide-content">
         <Grid gridTemplateColumns="1fr" gridGap={4} className="canva-grid">
           <CanvaCard>
             <CanvaText margin="0 0 20px">
-              Slackのお問い合わせチャネルに、執拗な問い合わせやスパムが増加していました。
+              Slackのお問い合わせチャネルに、執拗な問い合わせが増加していました。
             </CanvaText>
             <CanvaText margin="0 0 30px">
-              対応負荷を下げつつ、トラブル対応の効率化を図るため、ミュート機能が必要になりました。
+              対応負荷を下げつつ、精神的ストレスの緩和を図るため、ミュート機能を開発しました。
             </CanvaText>
             <Box width="100%" textAlign="center" marginTop="20px">
               <Image 
@@ -313,12 +314,15 @@ const Presentation = () => (
           <CanvaCard height="55vh">
             <CanvaList>
               <ListItem>
-                Cursorは、既存のファイル構造やコードスタイルを検索・理解できる
+                Cursorへ適切なコンテキストを提供する
               </ListItem>
               <ListItem>
-                自分のアプリケーションの構造に合わせた提案をしてくれる
+                コンテキストからファイル構造やコードスタイルを検索・理解してくれる
               </ListItem>
-              <ListItem>具体的なファイル名や機能を指定すると効果的</ListItem>
+              <ListItem>
+                それを踏まえてアプリケーションの構造に合わせた提案をしてくれる
+              </ListItem>
+              <ListItem>具体的なファイル名や機能を@メンションで指定すると効果的</ListItem>
             </CanvaList>
           </CanvaCard>
         </Grid>
@@ -358,39 +362,17 @@ end`}
       </Notes>
     </Slide>
 
-    {/* ポイント2 */}
-    <Slide className="canva-slide" backgroundColor="quaternary">
-      <CanvaHeading size="h2">ポイント②：簡潔な指示でも理解してくれる</CanvaHeading>
-      <div className="slide-content">
-        <CanvaCard height="55vh">
-          <CanvaList>
-            <ListItem>
-              一度コンテキストを理解すると、短い指示でも適切に対応してくれる
-            </ListItem>
-            <ListItem>
-              既に作成している機能の関連部分も自動的に推測してくれる
-            </ListItem>
-            <ListItem>「〇〇して」という簡単な日本語指示でも実装できる</ListItem>
-          </CanvaList>
-        </CanvaCard>
-      </div>
-      <Notes>
-        Cursorとの対話では、一度コンテキストを理解すると短い指示でも適切に応答してくれることを説明します。
-        この例では「追加して」だけで意図を理解しています。
-      </Notes>
-    </Slide>
-
     {/* ポイント3 */}
     <Slide className="canva-slide" backgroundColor="quaternary">
-      <CanvaHeading size="h2">ポイント③：エラーメッセージを共有する</CanvaHeading>
+      <CanvaHeading size="h2">ポイント②：エラーメッセージを共有する</CanvaHeading>
       <div className="slide-content">
         <CanvaCard width="55vh">
           <CanvaList>
             <ListItem>
               エラーの内容をそのまま共有すると、原因と解決策を提案してくれる
             </ListItem>
-            <ListItem>問題の本質を理解し、Rails特有の問題も認識できる</ListItem>
-            <ListItem>技術的な専門用語を使わなくても対応してくれる</ListItem>
+            <ListItem>コンテキストから問題の本質を理解し、言語特有の問題も認識できる</ListItem>
+            <ListItem>適切なコンテキストを提供していることが大事</ListItem>
           </CanvaList>
         </CanvaCard>
       </div>
@@ -407,9 +389,9 @@ end`}
         <Box width="100%" maxWidth="100%" overflow="hidden">
           <DialogBlock
             userMessage={`destroyリクエストがエラーになる。
-Request URL: http://damrey.com:3000/authority_admin/contact_bans/2
+「Request URL: http://damrey.com:3000/authority_admin/contact_bans/2
 Request Method: GET
-Status Code: 404 Not Found`}
+Status Code: 404 Not Found」`}
             aiMessage="問題は削除リンクのHTTPメソッドが正しく適用されていないことです。DELETEメソッドではなくGETメソッドでリクエストが送信されています。"
             codeBlock={`td
   = form_with url: authority_admin_contact_ban_path(ban), method: :delete, local: true do |f|
@@ -427,17 +409,17 @@ Status Code: 404 Not Found`}
 
     {/* ポイント4 */}
     <Slide className="canva-slide" backgroundColor="quaternary">
-      <CanvaHeading size="h2">ポイント④：既存UIの流用</CanvaHeading>
+      <CanvaHeading size="h2">ポイント③：既存UIの流用</CanvaHeading>
       <div className="slide-content">
         <CanvaCard>
           <CanvaList>
             <ListItem>
-              「同じにして」という指示だけでも、UIの統一感を維持できる
+              「"@ファイル指定"と同じにして」という指示だけでも、UIの統一感を維持できる
             </ListItem>
             <ListItem>
               細かいスタイルクラスやレイアウト構造も適切に再現してくれる
             </ListItem>
-            <ListItem>参考にしたいファイルを明示すると効果的</ListItem>
+            <ListItem>参考にしたいファイルを@メンションで明示すると効果的</ListItem>
           </CanvaList>
         </CanvaCard>
       </div>
@@ -477,7 +459,7 @@ Status Code: 404 Not Found`}
 
     {/* ポイント5 */}
     <Slide className="canva-slide" backgroundColor="quaternary">
-      <CanvaHeading size="h2">ポイント⑤：対話を通じた改善</CanvaHeading>
+      <CanvaHeading size="h2">ポイント④：対話を通じた改善</CanvaHeading>
       <div className="slide-content">
         <CanvaCard height="55vh">
           <CanvaList>
@@ -540,12 +522,12 @@ td
 
     {/* ポイント6 */}
     <Slide className="canva-slide" backgroundColor="quaternary">
-      <CanvaHeading size="h2">ポイント⑥：情報の補完</CanvaHeading>
+      <CanvaHeading size="h2">ポイント⑤：情報の補完</CanvaHeading>
       <div className="slide-content">
         <CanvaCard height="55vh">
           <CanvaList>
             <ListItem>意図を表す例を示すと理解しやすくなる</ListItem>
-            <ListItem>部分的な情報でも全体を推測して対応してくれる</ListItem>
+            <ListItem>適切なコンテキストを提供できていれば、部分的な情報でも全体を推測して対応してくれる</ListItem>
             <ListItem>具体例を示すとより正確な実装につながる</ListItem>
           </CanvaList>
         </CanvaCard>
@@ -596,7 +578,7 @@ td
                 margin: "0 auto 20px"
               }}
             >
-              Cursorとの対話で実装した最終的なBANリスト管理画面
+              Cursorとの対話で実装完了した最終的な管理画面
             </CanvaText>
             <Box 
               width="100%" 
@@ -638,19 +620,19 @@ td
 
     {/* 効果的な対話のコツ - グリッドレイアウト */}
     <Slide className="canva-slide">
-      <CanvaHeading>Cursorとの効果的な対話のコツ</CanvaHeading>
+      <CanvaHeading>CursorのAIエージェント活用のコツ</CanvaHeading>
       <div className="slide-content">
         <Grid gridTemplateColumns="1fr 1fr" gridGap={5} className="canva-grid">
           <CanvaCard>
             <CanvaList>
               <ListItem>明確な要件から始める</ListItem>
-              <ListItem>段階的に指示を出す</ListItem>
+              <ListItem>スコープを小さく段階的に指示を出す</ListItem>
               <ListItem>エラーを共有する</ListItem>
             </CanvaList>
           </CanvaCard>
           <CanvaCard>
             <CanvaList>
-              <ListItem>既存コードを参照する</ListItem>
+              <ListItem>@メンションなどで既存コードを参照する</ListItem>
               <ListItem>対話を通じて改善する</ListItem>
               <ListItem>具体例や期待する出力を示す</ListItem>
             </CanvaList>
@@ -663,6 +645,24 @@ td
       </Notes>
     </Slide>
 
+    <Slide className="canva-slide">
+      <CanvaHeading>その他Cursorの便利機能</CanvaHeading>
+      <div className="slide-content">
+        <CanvaCard height="55vh">
+          <CanvaList>
+            <ListItem>Project Rulesを活用すればコードのフォーマットを統一できる</ListItem>
+            <ListItem>@Notepadsを活用すれば好きなタイミングで好きなプロンプトを呼び出せる</ListItem>
+            <ListItem>@Webでwebサイトをスクレイピングして情報を取得できる</ListItem>
+            <ListItem>AIによるコード補完で一度に複数のコードを保管できる（copilotよりも便利）</ListItem>
+            <ListItem>@Foldersでフォルダ指定して開発ドキュメントをサクッと作成できる</ListItem>
+          </CanvaList>
+        </CanvaCard>
+      </div>
+      <Notes>
+        Cursorの特徴と利点をまとめます。対話型の開発スタイルがもたらす効率性と品質向上について強調します。
+      </Notes>
+    </Slide>
+
     {/* まとめ - 洗練されたリスト */}
     <Slide className="canva-slide">
       <CanvaHeading>まとめ</CanvaHeading>
@@ -670,10 +670,11 @@ td
         <CanvaCard height="55vh">
           <CanvaList>
             <ListItem>Cursorは対話を通じてコードを進化させていくツール</ListItem>
-            <ListItem>短い指示でも意図を汲み取ってくれる</ListItem>
+            <ListItem>適切なコンテキストとスコープを提供することが重要</ListItem>
             <ListItem>エラーから学習し、解決策を提案してくれる</ListItem>
             <ListItem>既存コードベースに沿った実装が得意</ListItem>
             <ListItem>段階的な改善を通じて品質の高いコードに導いてくれる</ListItem>
+            <ListItem>Cursorの便利機能をAIエージェントと組み合わせて活用すればより効率的に開発できる</ListItem>
           </CanvaList>
         </CanvaCard>
       </div>
