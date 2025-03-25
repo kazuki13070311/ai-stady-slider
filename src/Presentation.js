@@ -676,6 +676,11 @@ td
             <ListItem>段階的な改善を通じて品質の高いコードに導いてくれる</ListItem>
             <ListItem>Cursorの便利機能をAIエージェントと組み合わせて活用すればより効率的に開発できる</ListItem>
           </CanvaList>
+          <Text color="tertiary" fontSize={theme.fontSizes.text} lineHeight={3} fontWeight={500}>
+            <a href="https://docs.cursor.com/get-started/welcome" target="_blank" rel="noopener noreferrer">
+              Cursor公式ドキュメント: https://docs.cursor.com/get-started/welcome
+            </a>
+          </Text>
         </CanvaCard>
       </div>
       <Notes>
